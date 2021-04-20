@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jack Johansson
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Inpsyde 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-17 09:59+0430\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: assets/templates/users.php:22
+msgid ""
+"The user data will automatically be retrieved upon finishing the page load. "
+"You can verify this by disabling JavaScript. To get a fresh copy of the user "
+"data, press the \"Flush\" button."
+msgstr ""
+
+#: assets/templates/users.php:38
+msgid "User Data"
+msgstr ""
+
+#: assets/templates/users.php:44
+msgid "Flush"
+msgstr ""
+
+#: assets/templates/users.php:56
+msgid "ID"
+msgstr ""
+
+#: assets/templates/users.php:57
+msgid "Name"
+msgstr ""
+
+#: assets/templates/users.php:58
+msgid "Username"
+msgstr ""
+
+#: assets/templates/users.php:59
+msgid "Email"
+msgstr ""
+
+#: assets/templates/users.php:60
+msgid "Phone"
+msgstr ""
+
+#: assets/templates/users.php:61
+msgid "Website"
+msgstr ""
+
+#: assets/templates/users.php:62
+msgid "Actions"
+msgstr ""
+
+#: assets/templates/users.php:78
+msgid "User Details"
+msgstr ""
+
+#: assets/templates/users.php:84
+msgid ""
+"To view a user's details, click the \"View\" button in each row. Click the "
+"\"Refresh\" button above to clear the cache and fetch a fresh copy."
+msgstr ""
+
+#: assets/templates/users.php:111
+msgid "User Address"
+msgstr ""
+
+#: assets/templates/users.php:115
+msgid "Email:"
+msgstr ""
+
+#: assets/templates/users.php:119
+msgid "Phone:"
+msgstr ""
+
+#: assets/templates/users.php:123
+msgid "City:"
+msgstr ""
+
+#: assets/templates/users.php:127
+msgid "Website:"
+msgstr ""
+
+#: assets/templates/users.php:135
+msgid "Refresh"
+msgstr ""
+
+#: inpsyde/class-kernel.php:287
+msgid "View"
+msgstr ""
+
+#: inpsyde/class-kernel.php:288
+msgid "Error!"
+msgstr ""
+
+#: inpsyde/class-kernel.php:289
+msgid "Processing..."
+msgstr ""
+
+#: inpsyde/class-kernel.php:290
+msgid "Invalid user id. Please refresh the page and try again."
+msgstr ""
+
+#: inpsyde/class-restful.php:90 inpsyde/class-restful.php:126
+msgid ""
+"The required parameter ID is missing from the request. Please try again "
+"later."
+msgstr ""
+
+#: inpsyde/class-users.php:32
+msgid ""
+"Could not flush the user cache. This is mostly because the results were "
+"already flushed."
+msgstr ""
+
+#: inpsyde/class-users.php:50
+msgid "This user ID is not cached yet."
+msgstr ""
+
+#: inpsyde/class-users.php:61
+msgid "Could not save the cache into database. Please try again later."
+msgstr ""
+
+#: inpsyde/class-users.php:143
+msgid "The API has returned an empty response. Please try again later."
+msgstr ""
+
+#: inpsyde/class-users.php:193
+msgid "The requested user ID is not valid."
+msgstr ""

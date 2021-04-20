@@ -1,0 +1,36 @@
+## PhpStorm
+.idea/
+.idea/*
+out/
+.idea_modules/
+atlassian-ide-plugin.xml
+
+## File-based project format
+*.ipr
+*.iws
+*.iml
+*.sh
+
+## Composer
+composer.phar
+vendor/
+wpcs/
+
+## Dot files
+.sass-cache
+.DS_Store
+.cproject
+.buildpath
+
+## Grunt, NPM
+node_modules/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+## Windows
+Thumbs.db
+Desktop.ini
+
+# WordPress
+wordpress/
