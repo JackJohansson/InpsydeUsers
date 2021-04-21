@@ -14,6 +14,8 @@
     - [Classes](#imp-classes)
     - [Rest Routes](#imp-routes)
     - [Hooks](#imp-hooks)
+    - [Unit Tests](#unit-tests)
+    - [Hooks](#imp-hooks)
     - [External Libraries](#external-libraries)
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
@@ -38,7 +40,24 @@ Use of PHP 8 was avoided due to being fairly new, even though PHP 8 is a persona
 
 ## How to Install
 
-To install, simply clone the repository to your environment.
+You can use composer to install the plugin, by adding the below to your `composer.json`:
+
+```json
+{
+	"repositories" : [
+		{
+			"type" : "vcs",
+			"url" : "username@github.com:jackjohansson/inpsydeusers.git"
+		}
+	]
+}
+```
+
+You can also clone the repository using `git clone` and then run `composer install`, and it will setup a WordPress
+installation for you.
+
+Ultimately, you can download a copy from the `release` branch and upload it via the plugin installer page in WordPress
+dashboard. This branch follow the traditional WordPress plugin repository style.
 
 ## How to Use
 
