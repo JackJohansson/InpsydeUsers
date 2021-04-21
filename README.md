@@ -57,8 +57,9 @@ You can use composer to install the plugin, by adding the below to your `compose
 You can also clone the repository using `git clone` and then run `composer install`, and it will setup a WordPress
 installation for you.
 
-Ultimately, you can download a copy from the `release` branch and upload it via the plugin installer page in WordPress
-dashboard. This branch follow the traditional WordPress plugin repository style.
+I'm not certain of how Inpsyde's setup is, so I've included a traditional release branch too. Uou can download a copy
+from the `release` branch and upload it via the plugin installer page in WordPress dashboard. This branch follow the
+traditional WordPress plugin repository style.
 
 ## How to Use
 
