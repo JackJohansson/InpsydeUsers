@@ -1,177 +1,160 @@
 <?php
-
 /**
  * Class used to handle the rest requests.
  *
  * @package Inpsyde
  */
 
-declare(strict_types=1);
-
 namespace Inpsyde;
+
+// No direct access.
+if ( ! defined( 'ABSPATH' ) ) {
+	die( 'You shouldn\'t really be doing this.' );
+}
 
 /**
  * Class Restful
  *
  * @package Inpsyde
  */
-class Restful
-{
+class Restful {
 
-    /**
-     * Rest namespace.
-     */
-    public const REST_NAMESPACE = 'inpsyde';
+	/**
+	 * Rest namespace.
+	 */
+	public const REST_NAMESPACE = 'inpsyde';
 
-    /**
-     * Rest path to fetch the users data.
-     */
-    public const REST_USERS_ROUTE = 'users';
+	/**
+	 * Rest path to fetch the users data.
+	 */
+	public const REST_USERS_ROUTE = 'users';
 
-    /**
-     * Rest path to fetch a single user's details.
-     */
-    public const REST_USER_ROUTE = 'user-info';
-    /**
-     * Rest route to flush a user's data.
-     */
-    public const REST_USER_FLUSH_ROUTE = 'user-flush';
-    /**
-     * Rest route to flush all the users' data.
-     */
-    public const REST_USERS_FLUSH_ROUTE = 'users-flush';
+	/**
+	 * Rest path to fetch a single user's details.
+	 */
+	public const REST_USER_ROUTE = 'user-info';
+	/**
+	 * Rest route to flush a user's data.
+	 */
+	public const REST_USER_FLUSH_ROUTE = 'user-flush';
+	/**
+	 * Rest route to flush all the users' data.
+	 */
+	public const REST_USERS_FLUSH_ROUTE = 'users-flush';
 
-    /**
-     * Handle the request to list all the users.
-     *
-     * @param \WP_REST_Request $request The request object passed to the callback function.
-     *
-     * @return array An array of data sent back to the user.
-     */
-    public static function listUsers(\WP_REST_Request $request): array
-    {
+	/**
+	 * Handle the request to list all the users.
+	 *
+	 * @param \WP_REST_Request $request The request object passed to the callback function.
+	 *
+	 * @return array An array of data sent back to the user.
+	 */
+	public static function list_users( \WP_REST_Request $request ): array {
+		$users = new Users();
 
-        $users = new Users();
+		// List all the users.
+		$user_list = $users->list_users();
 
-        // List all the users.
-        $userList = $users->listUsers();
+		// If there's an error.
+		if ( is_wp_error( $user_list ) ) {
+			return array(
+				'success' => false,
+				'message' => $user_list->get_error_message(),
+			);
+		}
 
-        // If there's an error.
-        if (empty($userList)) {
-            return [
-                'success' => false,
-                'message' => $users->errorMessage(),
-            ];
-        }
+		return $user_list;
+	}
 
-        return $userList;
-    }
+	/**
+	 * Flush a single user's data.
+	 *
+	 * @param \WP_REST_Request $request The request object passed to the callback function.
+	 *
+	 * @return array An array of data sent back to the user.
+	 */
+	public function user_flush( \WP_REST_Request $request ): array {
+		$users = new Users();
 
-    /**
-     * Flush a single user's data.
-     *
-     * @param \WP_REST_Request $request The request object passed to the callback function.
-     *
-     * @return array An array of data sent back to the user.
-     */
-    public static function userFlush(\WP_REST_Request $request): array
-    {
+		$user_id = $request->get_param( 'user_id' );
 
-        $users = new Users();
+		if ( null === $user_id ) {
+			return array(
+				'success' => false,
+				'message' => esc_html__( 'The required parameter ID is missing from the request. Please try again later.', 'inpsyde-users' ),
+			);
+		}
 
-        $userId = $request->get_param('user_id');
+		$flush_result = $users->flush_user( $user_id );
 
-        if (null === $userId) {
-            return [
-                'success' => false,
-                'message' => esc_html__(
-                    'The required parameter ID is missing from the request. Please try again later.',
-                    'inpsyde-users'
-                ),
-            ];
-        }
+		// If there's an error.
+		if ( is_wp_error( $flush_result ) ) {
+			return array(
+				'success' => false,
+				'message' => $flush_result->get_error_message(),
+			);
+		}
 
-        $flushResult = $users->flushUser((int)$userId);
+		return array( 'success' => true );
+	}
 
-        // If there's an error.
-        if (!$flushResult) {
-            return [
-                'success' => false,
-                'message' => $users->errorMessage(),
-            ];
-        }
+	/**
+	 * Handle the request to list the details
+	 * for a specific user.
+	 *
+	 * @param \WP_REST_Request $request The request object passed to the callback function.
+	 *
+	 * @return array An array of data sent back to the user.
+	 */
+	public static function user_info( \WP_REST_Request $request ): array {
+		$users = new Users();
 
-        return [
-            'success' => true,
-        ];
-    }
+		// Get user's ID.
+		$user_id = $request->get_param( 'id' );
 
-    /**
-     * Handle the request to list the details
-     * for a specific user.
-     *
-     * @param \WP_REST_Request $request The request object passed to the callback function.
-     *
-     * @return array An array of data sent back to the user.
-     */
-    public static function userInfo(\WP_REST_Request $request): array
-    {
+		// If the id is missing.
+		if ( null === $user_id ) {
+			return array(
+				'success' => false,
+				'message' => esc_html__( 'The required parameter ID is missing from the request. Please try again later.', 'inpsyde-users' ),
+			);
+		}
 
-        $users = new Users();
+		// Fetch the details.
+		$user_info = $users->user_info( $user_id );
 
-        // Get user's ID.
-        $userId = $request->get_param('id');
+		// If there's an error.
+		if ( is_wp_error( $user_info ) ) {
+			return array(
+				'success' => false,
+				'message' => $user_info->get_error_message(),
+			);
+		}
 
-        // If the id is missing.
-        if (null === $userId) {
-            return [
-                'success' => false,
-                'message' => esc_html__(
-                    'The required parameter ID is missing from the request. Please try again later.',
-                    'inpsyde-users'
-                ),
-            ];
-        }
+		// Return the results.
+		return $user_info;
+	}
 
-        // Fetch the details.
-        $userInfo = $users->userInfo((int)$userId);
+	/**
+	 * Flush all the users' details.
+	 *
+	 * @param \WP_REST_Request $request The request object passed to the callback function.
+	 *
+	 * @return array An array of data sent back to the user.
+	 */
+	public function users_flush( \WP_REST_Request $request ): array {
+		$users = new Users();
 
-        // If there's an error.
-        if (empty($userInfo)) {
-            return [
-                'success' => false,
-                'message' => $users->errorMessage(),
-            ];
-        }
+		$flush_result = $users->flush_all();
 
-        // Return the results.
-        return $userInfo;
-    }
+		// If there's an error.
+		if ( is_wp_error( $flush_result ) ) {
+			return array(
+				'success' => false,
+				'message' => $flush_result->get_error_message(),
+			);
+		}
 
-    /**
-     * Flush all the users' details.
-     *
-     * @param \WP_REST_Request $request The request object passed to the callback function.
-     *
-     * @return array An array of data sent back to the user.
-     */
-    public static function usersFlush(\WP_REST_Request $request): array
-    {
-
-        $users = new Users();
-
-        $flushResult = $users->flushAll();
-
-        // If there's an error.
-        if (!$flushResult) {
-            return [
-                'success' => false,
-                'message' => $users->errorMessage(),
-            ];
-        }
-
-        return [
-            'success' => true,
-        ];
-    }
+		return array( 'success' => true );
+	}
 }
