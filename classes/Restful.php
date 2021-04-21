@@ -1,22 +1,22 @@
 <?php
-	/**
-	 * Class used to handle the rest requests.
-	 *
-	 * @package Inpsyde
-	 */
+/**
+ * Class used to handle the rest requests.
+ *
+ * @package Inpsyde
+ */
 
-	namespace Inpsyde;
+namespace Inpsyde;
 
-	// No direct access.
+// No direct access.
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You shouldn\'t really be doing this.' );
 }
 
-	/**
-	 * Class Restful
-	 *
-	 * @package Inpsyde
-	 */
+/**
+ * Class Restful
+ *
+ * @package Inpsyde
+ */
 class Restful {
 
 	/**
