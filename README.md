@@ -14,7 +14,8 @@
     - [Classes](#imp-classes)
     - [Rest Routes](#imp-routes)
     - [Hooks](#imp-hooks)
-    - [Unit Tests](#unit-tests)
+    - [PHP CodeSniffer](#php-codesniffer)
+    - [PHP Unit Tests](#php-unit-tests)
     - [Hooks](#imp-hooks)
     - [External Libraries](#external-libraries)
 - [How it works](#how-it-works)
@@ -107,6 +108,23 @@ This plugin offers multiple filters to modify the data. Below is a list of the a
 - `inpsyde_localization` : Filters the localization array which is output in the footer and used by jQuery.
 - `inpsyde_transient` : Filters the duration of cache, in seconds.
 - `inpsyde_user_details` : Filters the user details array that is sent to the client.
+
+### PHP CodeSniffer
+
+The code have been formatted based on the Inpsyde Coding Standards. However, certain parts were omitted as they would
+raise serious doubts, such as:
+
+- Using a prefix in a namespaced environment
+- Dropping support for PSR-4 in favor of traditional `class-NAME.php`
+
+### PHP Unit Tests
+
+Unit tests have been written using PHPUnitTest and BrainMonkey. They are included under the `tests` folder
+and `Inpsyde\Tests` namespace.
+
+The test is using multiple syntax for the purpose of demonstration, so certain error messages are expected. In fact,
+they are not errors, they're informative messages. Please take a look at the test file's comments, this has been
+explained in the docs.
 
 ### External Libraries
 
