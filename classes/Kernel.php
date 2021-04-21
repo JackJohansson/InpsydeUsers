@@ -1,23 +1,23 @@
 <?php
-	/**
-	 * Kernel class used to register hooks, translations,
-	 * etc.
-	 *
-	 * @package Inpsyde
-	 */
+/**
+ * Kernel class used to register hooks, translations,
+ * etc.
+ *
+ * @package Inpsyde
+ */
 
-	namespace Inpsyde;
+namespace Inpsyde;
 
-	// No direct access.
+// No direct access.
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You shouldn\'t really be doing this.' );
 }
 
-	/**
-	 * Class Kernel
-	 *
-	 * @package Inpsyde
-	 */
+/**
+ * Class Kernel
+ *
+ * @package Inpsyde
+ */
 class Kernel {
 
 	/**
