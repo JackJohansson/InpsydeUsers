@@ -119,8 +119,8 @@ raise serious doubts, such as:
 
 ### PHP Unit Tests
 
-Unit tests have been written using PHPUnitTest and BrainMonkey. They are included under the `tests` folder
-and `Inpsyde\Tests` namespace.
+Unit tests have been written using PHPUnitTest and BrainMonkey, and the coverage is for the `Users` class. They are
+included under the `tests` folder and `Inpsyde\Tests` namespace.
 
 The test is using multiple syntax for the purpose of demonstration, so certain error messages are expected. In fact,
 they are not errors, they're informative messages. Please take a look at the test file's comments, this has been
