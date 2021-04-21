@@ -1,22 +1,22 @@
 <?php
-	/**
-	 * Class used to handle the user's data.
-	 *
-	 * @package Inpsyde
-	 */
+/**
+ * Class used to handle the user's data.
+ *
+ * @package Inpsyde
+ */
 
-	namespace Inpsyde;
+namespace Inpsyde;
 
 	// No direct access.
 if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You shouldn\'t really be doing this.' );
 }
 
-	/**
-	 * Class Users
-	 *
-	 * @package Inpsyde
-	 */
+/**
+ * Class Users
+ *
+ * @package Inpsyde
+ */
 class Users {
 
 	/**
