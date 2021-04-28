@@ -13,7 +13,7 @@ atlassian-ide-plugin.xml
 
 ## Composer
 composer.phar
-vendor/
+/vendor/
 wpcs/
 
 ## Dot files
