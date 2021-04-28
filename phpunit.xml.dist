@@ -12,13 +12,13 @@
         processIsolation="false"
         stopOnFailure="false">
     <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">tests/phpunit/Unit</directory>
+        <testsuite name="Users Test">
+            <file>tests/phpunit/Unit/UsersTest.php</file>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
+            <directory suffix=".php">classes</directory>
             <exclude>
                 <directory>tests</directory>
                 <directory>vendor</directory>

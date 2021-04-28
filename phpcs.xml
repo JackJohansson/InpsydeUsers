@@ -27,16 +27,9 @@
     <!-- For help in understanding these custom sniff properties:
         https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki/Customizable-sniff-properties -->
     <config name="minimum_supported_wp_version" value="4.0"/>
-    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-        <properties>
-            <property name="prefixes" type="array">
-                <element name="inpsyde"/>
-            </property>
-        </properties>
-    </rule>
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" value="inpsyde"/>
+            <property name="text_domain" value="inpsyde-users"/>
         </properties>
     </rule>
     <rule ref="WordPress.WhiteSpace.ControlStructureSpacing">

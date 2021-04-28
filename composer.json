@@ -31,15 +31,14 @@
 		"brain/monkey" : "~2.6.0",
 		"antecedent/patchwork" : "^2.0",
 		"mockery/mockery" : ">=0.9 <2",
-		"phpunit/phpunit" : "*",
+		"phpunit/phpunit" : "9.0.0",
 		"dealerdirect/phpcodesniffer-composer-installer" : "*",
 		"squizlabs/php_codesniffer" : "^3",
 		"phpcompatibility/phpcompatibility-wp" : "*",
 		"wp-coding-standards/wpcs" : "*",
 		"roave/security-advisories" : "dev-master",
-		"dg/composer-cleaner" : "^2",
 		"roots/wordpress" : "@stable",
-		"inpsyde/php-coding-standards" : "*"
+		"inpsyde/php-coding-standards" : "^1@dev"
 	},
 	"config" : {
 		"optimize-autoloader" : true
@@ -47,14 +46,15 @@
 	"minimum-stability" : "dev",
 	"prefer-stable" : true,
 	"scripts" : {
-		"cs" : "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"cs" : "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs classes",
 		"pu" : "@php ./vendor/bin/phpunit",
 		"qa" : [
 			"@cs",
 			"@pu"
 		],
-		"phpcs" : "phpcs --standard=phpcs.xml",
-		"phpcbf" : "phpcs --standard=phpcs.xml --suffix=.fixed src"
+		"phpcs" : "phpcs --standard=phpcs.xml classes",
+		"phpcbf" : "phpcs --standard=phpcs.xml --suffix=.fixed classes",
+		"inpsydecs" : "phpcs --standard=Inpsyde classes"
 	},
 	"autoload" : {
 		"psr-4" : {
