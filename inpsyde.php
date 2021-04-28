@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:       InpsydeUsers
  * Plugin URI:        https://github.com/JackJohansson/Inpsyde-Project
@@ -13,19 +14,23 @@
  * Text Domain:       inpsyde-users
  * Domain Path:       /languages/
  *
- * @package Inpsyde
+ * @package InpsydeUsers
  */
 
+declare(strict_types=1);
+
+namespace Inpsyde;
+
 // Plugin path and file.
-define( 'Inpsyde\PLUGIN_DIR', __DIR__ );
-define( 'Inpsyde\PLUGIN_FILE', __FILE__ );
-define( 'Inpsyde\PLUGIN_URL', plugin_dir_url( Inpsyde\PLUGIN_FILE ) );
-define( 'Inpsyde\API_ROOT', 'https://jsonplaceholder.typicode.com/' );
+const PLUGIN_DIR = __DIR__;
+const PLUGIN_FILE = __FILE__;
+const API_ROOT = 'https://jsonplaceholder.typicode.com/';
+define('Inpsyde\PLUGIN_URL', plugin_dir_url(PLUGIN_FILE));
 
 // Require the main class.
-if ( file_exists( \Inpsyde\PLUGIN_DIR . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Kernel.php' ) ) {
-	// Load the kernel.
-	require_once \Inpsyde\PLUGIN_DIR . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Kernel.php';
-	// Init the plugin.
-	Inpsyde\Kernel::init();
+if (file_exists(PLUGIN_DIR . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Kernel.php')) {
+    // Load the kernel.
+    require_once PLUGIN_DIR . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'Kernel.php';
+    // Init the plugin.
+    Kernel::init();
 }
