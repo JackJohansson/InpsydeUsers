@@ -224,7 +224,7 @@ class Users
      *
      * @param string $endpoint The endpoint to connect to.
      *
-     * @return string|\WP_Error The response body.
+     * @return string The response body.
      */
     public function makeRequest(string $endpoint): string
     {
