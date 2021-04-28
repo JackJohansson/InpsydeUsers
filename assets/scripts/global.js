@@ -65,7 +65,7 @@
                 },
                 error: function ( jqXHR, textStatus, errorThrown ) {
                     // Show the error
-                    swal.fire(inpsyde.i18n.error, jqXHR.responseText, 'error');
+                    swal.fire(errorThrown, jqXHR.responseJSON.message, 'error');
                     // Hide the results
                     userDetails.fadeOut();
                 },
@@ -107,8 +107,8 @@
                 beforeSend: function ( xhr ) {
                     xhr.setRequestHeader('X-WP-Nonce', inpsyde.nonce);
                 },
-                error: function ( xhr, error, code ) {
-                    swal.fire(inpsyde.i18n.error, error, 'error');
+                error: function ( jqXHR, textStatus, errorThrown ) {
+                    swal.fire(errorThrown, jqXHR.responseJSON.message, 'error');
                 },
                 dataSrc: function ( json ) {
                     if ( false === json.success ) {
@@ -215,7 +215,7 @@
                 },
                 error: function ( jqXHR, textStatus, errorThrown ) {
                     // Show the error
-                    swal.fire(inpsyde.i18n.error, jqXHR.responseText, 'error');
+                    swal.fire(errorThrown, jqXHR.responseJSON.message, 'error');
                 },
                 complete: function ( jqXHR, textStatus ) {
                     // Unblock the table
@@ -284,7 +284,7 @@
                 },
                 error: function ( jqXHR, textStatus, errorThrown ) {
                     // Show the error
-                    swal.fire(inpsyde.i18n.error, jqXHR.responseText, 'error');
+                    swal.fire(errorThrown, jqXHR.responseJSON.message, 'error');
 
                     // Hide the results
                     userWrapper.fadeOut();
