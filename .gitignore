@@ -3,6 +3,7 @@
 .idea/*
 out/
 .idea_modules/
+atlassian-ide-plugin.xml
 
 ## File-based project format
 *.ipr
@@ -11,8 +12,9 @@ out/
 *.sh
 
 ## Composer
+composer.phar
 /vendor/
-/wpcs/
+wpcs/
 
 ## Dot files
 .sass-cache
