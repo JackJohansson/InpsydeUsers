@@ -1,6 +1,7 @@
 <?php
-	/**
-	 * Nothing to see here.
-	 *
-	 * @package Inpsyde
-	 **/
+
+    /**
+     * Nothing to see here.
+     *
+     * @package Inpsyde
+     **/

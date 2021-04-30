@@ -20,121 +20,6 @@ class Kernel
 {
 
     /**
-     * Initialize the requirements.
-     */
-    public static function init()
-    {
-
-        // Register autoload.
-        spl_autoload_register([ __CLASS__, 'registerAutoload' ]);
-
-        // Register the hooks.
-        self::registerHooks();
-
-        // Register the filters.
-        self::registerFilters();
-
-        // Register activation hook.
-        self::registerActivation();
-
-        // Register uninstall hook.
-        self::registerUninstall();
-    }
-
-    /**
-     * Callback method for registering the activation
-     * hook.
-     */
-    public static function registerActivation()
-    {
-        // Both perform the same action.
-        register_activation_hook(PLUGIN_FILE, [ __CLASS__, 'activationCallback' ]);
-        register_deactivation_hook(PLUGIN_FILE, [ __CLASS__, 'activationCallback' ]);
-    }
-
-    /**
-     * Perform uninstallation tasks.
-     */
-    public static function registerUninstall()
-    {
-    }
-
-    /**
-     * Register the default hooks.
-     */
-    private static function registerHooks()
-    {
-
-        // We will add our rewrite rules after the plugin has been loaded,
-        // so we can avoid an unnecessary flag to flush the rewrite rules.
-        $activationHook = plugin_basename(PLUGIN_FILE);
-
-        // An array of hooks and their callbacks.
-        $hooks = [
-            [
-                'name' => "activate_{$activationHook}",
-                'callback' => [ __CLASS__, 'addRewriteRules' ],
-                'priority' => 1,
-                'args' => 1,
-            ],
-            [
-                'name' => 'init',
-                'callback' => [ __CLASS__, 'loadTextDomain' ],
-                'priority' => 10,
-                'args' => 1,
-            ],
-            [
-                'name' => 'rest_api_init',
-                'callback' => [ __CLASS__, 'addRestRules' ],
-                'priority' => 10,
-                'args' => 1,
-            ],
-            [
-                'name' => 'templateRedirect',
-                'callback' => [ __CLASS__, 'templateRedirect' ],
-                'priority' => 10,
-                'args' => 1,
-            ],
-            [
-                'name' => 'wp_enqueue_scripts',
-                'callback' => [ __CLASS__, 'enqueueScripts' ],
-                'priority' => 999,
-                'args' => 1,
-            ],
-        ];
-
-        foreach ($hooks as $hook) {
-            add_action($hook['name'], $hook['callback'], $hook['priority'], $hook['args']);
-        }
-    }
-
-    /**
-     * Callback method to register the filters.
-     */
-    private static function registerFilters()
-    {
-        // An array of filters and their callbacks.
-        $filters = [
-            [
-                'name' => 'query_vars',
-                'callback' => [ __CLASS__, 'addQueryVars' ],
-                'priority' => 10,
-                'args' => 1,
-            ],
-            [
-                'name' => 'template_include',
-                'callback' => [ __CLASS__, 'templateInclude' ],
-                'priority' => 10,
-                'args' => 1,
-            ],
-        ];
-
-        foreach ($filters as $filter) {
-            add_filter($filter['name'], $filter['callback'], $filter['priority'], $filter['args']);
-        }
-    }
-
-    /**
      * Callback function to be executed after the
      * plugin is activated.
      */
@@ -324,7 +209,7 @@ class Kernel
         $styles = [
             // Google fonts.
             'inpsyde-fonts' => [
-                'src' => 'https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600&family=Poppins:wght@100;200;300;400;500;600&display=swap',
+                'src' => self::googleFonts(true),
                 'deps' => null,
                 'ver' => '1.0.0',
             ],
@@ -359,6 +244,146 @@ class Kernel
         }
 
         return array_keys($styles);
+    }
+
+    /**
+     * Get a list of google fonts to enqueue.
+     *
+     * @param bool $swap
+     *
+     * @return string
+     */
+    protected static function googleFonts(bool $swap = false): string
+    {
+        // Base google fonts endpoint.
+        $baseUrl = 'https://fonts.googleapis.com/css2?';
+
+        // Used fonts.
+        $fonts = "family=Roboto:wght@100;200;300;400;500;600";
+        $fonts .= "&family=Poppins:wght@100;200;300;400;500;600";
+
+        // Add font swap to the styles.
+        $swap = $swap ? '&display=swap' : '';
+
+        // Full URL to get fonts.
+        $url = $baseUrl . $fonts . $swap;
+
+        return apply_filters('inpsyde_google_fonts', $url, $baseUrl);
+    }
+
+    /**
+     * Initialize the requirements.
+     */
+    public static function init()
+    {
+
+        // Register autoload.
+        spl_autoload_register([ __CLASS__, 'registerAutoload' ]);
+
+        // Register the hooks.
+        self::registerHooks();
+
+        // Register the filters.
+        self::registerFilters();
+
+        // Register activation hook.
+        self::registerActivation();
+
+        // Register uninstall hook.
+        self::registerUninstall();
+    }
+
+    /**
+     * Register the default hooks.
+     */
+    private static function registerHooks()
+    {
+
+        // We will add our rewrite rules after the plugin has been loaded,
+        // so we can avoid an unnecessary flag to flush the rewrite rules.
+        $activationHook = plugin_basename(PLUGIN_FILE);
+
+        // An array of hooks and their callbacks.
+        $hooks = [
+            [
+                'name' => "activate_{$activationHook}",
+                'callback' => [ __CLASS__, 'addRewriteRules' ],
+                'priority' => 1,
+                'args' => 1,
+            ],
+            [
+                'name' => 'init',
+                'callback' => [ __CLASS__, 'loadTextDomain' ],
+                'priority' => 10,
+                'args' => 1,
+            ],
+            [
+                'name' => 'rest_api_init',
+                'callback' => [ __CLASS__, 'addRestRules' ],
+                'priority' => 10,
+                'args' => 1,
+            ],
+            [
+                'name' => 'templateRedirect',
+                'callback' => [ __CLASS__, 'templateRedirect' ],
+                'priority' => 10,
+                'args' => 1,
+            ],
+            [
+                'name' => 'wp_enqueue_scripts',
+                'callback' => [ __CLASS__, 'enqueueScripts' ],
+                'priority' => 999,
+                'args' => 1,
+            ],
+        ];
+
+        foreach ($hooks as $hook) {
+            add_action($hook['name'], $hook['callback'], $hook['priority'], $hook['args']);
+        }
+    }
+
+    /**
+     * Callback method to register the filters.
+     */
+    private static function registerFilters()
+    {
+        // An array of filters and their callbacks.
+        $filters = [
+            [
+                'name' => 'query_vars',
+                'callback' => [ __CLASS__, 'addQueryVars' ],
+                'priority' => 10,
+                'args' => 1,
+            ],
+            [
+                'name' => 'template_include',
+                'callback' => [ __CLASS__, 'templateInclude' ],
+                'priority' => 10,
+                'args' => 1,
+            ],
+        ];
+
+        foreach ($filters as $filter) {
+            add_filter($filter['name'], $filter['callback'], $filter['priority'], $filter['args']);
+        }
+    }
+
+    /**
+     * Callback method for registering the activation
+     * hook.
+     */
+    public static function registerActivation()
+    {
+        // Both perform the same action.
+        register_activation_hook(PLUGIN_FILE, [ __CLASS__, 'activationCallback' ]);
+        register_deactivation_hook(PLUGIN_FILE, [ __CLASS__, 'activationCallback' ]);
+    }
+
+    /**
+     * Perform uninstallation tasks.
+     */
+    public static function registerUninstall()
+    {
     }
 
     /**
