@@ -384,6 +384,11 @@ class Kernel
      */
     public static function registerUninstall()
     {
+        // Delete the transients on uninstall. We should put a confirmation
+        // dialog for important data, but transients are not important and
+        // will be deleted over time anyway. This is just for demonstration.
+        delete_transient('inpsyde_users');
+        delete_transient('inpsyde_user_details');
     }
 
     /**
