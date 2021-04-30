@@ -1,3 +1,15 @@
+<?php
+
+    /**
+     * Template file used for outputting the users' table.
+     *
+     * @package Inpsyde
+     */
+
+if (!defined('ABSPATH')) {
+    die('You shouldn\'t really be doing this.');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Begin Header -->
